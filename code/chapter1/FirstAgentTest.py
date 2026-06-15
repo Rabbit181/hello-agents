@@ -142,10 +142,10 @@ import re
 
 # --- 1. 配置LLM客户端 ---
 # 请根据您使用的服务，将这里替换成对应的凭证和地址
-API_KEY = "YOUR_API_KEY"
-BASE_URL = "YOUR_BASE_URL"
-MODEL_ID = "YOUR_MODEL_ID"
-os.environ['TAVILY_API_KEY'] = "YOUR_TAVILY_API_KEY"
+API_KEY = "sk-PbjSuMzywYfBI1tC5b4395Fc0f624877Ad1529Cc2398946f"
+BASE_URL = "https://aihubmix.com/v1"
+MODEL_ID = "gpt-5.5-free"
+os.environ['TAVILY_API_KEY'] = "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"
 
 llm = OpenAICompatibleClient(
     model=MODEL_ID,

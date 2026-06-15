@@ -1,0 +1,5 @@
+charset-normalizer==3.4.7
+openai==2.41.1
+pip-chill==1.0.5
+pydantic_core==2.46.4
+tavily-python==0.7.26
