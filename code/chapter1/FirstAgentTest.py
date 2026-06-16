@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 AGENT_SYSTEM_PROMPT = """
 你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。
 
@@ -142,10 +145,9 @@ import re
 
 # --- 1. 配置LLM客户端 ---
 # 请根据您使用的服务，将这里替换成对应的凭证和地址
-API_KEY = "sk-PbjSuMzywYfBI1tC5b4395Fc0f624877Ad1529Cc2398946f"
-BASE_URL = "https://aihubmix.com/v1"
-MODEL_ID = "gpt-5.5-free"
-os.environ['TAVILY_API_KEY'] = "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"
+API_KEY = os.environ.get("OPENAI_API_KEY")
+BASE_URL = os.environ.get("OPENAI_BASE_URL")
+MODEL_ID = os.environ.get("MODEL_NAME")
 
 llm = OpenAICompatibleClient(
     model=MODEL_ID,
