@@ -1,7 +1,7 @@
 import re
 from llm_client import HelloAgentsLLM
 from tools import ToolExecutor, search
-
+from FirstAgentTest import get_attraction, get_weather
 # (此处省略 REACT_PROMPT_TEMPLATE 的定义)
 REACT_PROMPT_TEMPLATE = """
 请注意，你是一个有能力调用外部工具的智能助手。
@@ -92,8 +92,16 @@ class ReActAgent:
 if __name__ == '__main__':
     llm = HelloAgentsLLM()
     tool_executor = ToolExecutor()
-    search_desc = "一个网页搜索引擎。当你需要回答关于时事、事实以及在你的知识库中找不到的信息时，应使用此工具。"
-    tool_executor.registerTool("Search", search_desc, search)
+    # search_desc = "一个网页搜索引擎。当你需要回答关于时事、事实以及在你的知识库中找不到的信息时，应使用此工具。"
+    tool_executor.registerTool(
+        "get_attraction", 
+        """根据城市和天气，使用Tavily Search API搜索并返回优化后的景点推荐。
+        输入参数：
+        - cityAndweather: 上海，多云
+        """,
+        get_attraction
+    )
+    tool_executor.registerTool("get_weather", "根据城市，通过调用 wttr.in API 查询真实的天气信息。获取天气信息。", get_weather)
     agent = ReActAgent(llm_client=llm, tool_executor=tool_executor)
-    question = "华为最新的手机是哪一款？它的主要卖点是什么？"
+    question = "告诉我在上海的天气，并推荐一个 suitable 的景点。"
     agent.run(question)
